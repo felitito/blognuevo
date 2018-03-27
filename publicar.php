@@ -11,6 +11,7 @@
      $regis->bindparam(':feche', $feche);
      $regis->bindparam(':cont', $cont);
      $regis->bindparam(':idc', $idc);
+     
 
 
 
