@@ -1,5 +1,5 @@
 <?php   
-
+session_start();
     include("admin/settings/settings.inc.php");
     $regis = $pdo->prepare('INSERT INTO publicaciones (id_usuarios, titulo,categoria, fecha_de_publicacion, fecha_de_edicion, contenido, id_cat) VALUES ( :idu, :title, :cat, :fechp, :feche, :cont, :idc)');
 
@@ -15,9 +15,9 @@
 
 
 
-      if(isset($_POST['id_usuario'])){
+      if(isset($_POST['titulo'])){
 
-        $idu =$_POST['id_usuario'];
+        $idu = $_SESSION['id'];
         $title =$_POST['titulo'];
         $cat=$_POST['categoria'];
         $fechp =$_POST['fecha_de_publicación'];
@@ -26,7 +26,7 @@
         $idc =$_POST['id_categoria'];
 
 
-         $regis ->execute();
+         $regis->execute();
 
 
    
@@ -48,10 +48,11 @@
    <table border="1" id="registrar">
    </center>
      <tr>
-        <th><p>ID DE USUARIO:</p></th>
-        <th><input type="text" placeholder="Id usuario" name="id_usuario" required/></th>
-       
-     </tr>  
+       <th><p>id usuario</p></th>
+       <th><LABEL><?php echo $idu; ?></LABEL></th>
+
+
+     </tr>
      <tr>
          <th><p>TITULO:</p></th>
          <th><input type="text" placeholder="Titulo" name="titulo" required/></th>
@@ -80,9 +81,8 @@
      </tr>    
    </table>
    <br>
-   <input type="submit" value="Enviar" /> 
-   <a href="publicaciones.php">Regresar</a>
+   <input type="submit" value="Enviar"> 
+   <a href="perfil.php">Regresar</a>
   </form>
-
 </body>
 </html>
